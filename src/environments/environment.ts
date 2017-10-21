@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   
-  apiUrl: 'https://it131l-api.herokuapp.com'
+  apiUrl: 'localhost:3000'
 };
