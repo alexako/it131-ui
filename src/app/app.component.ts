@@ -1,35 +1,38 @@
-import { Component } from '@angular/core';
-import { ApiService } from 'api.service';
+import { Component, OnInit } from '@angular/core';
+import { BarDataService } from './bar-data.service';
+import { Bar } from './bar';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [ApiService]
+  providers: [BarDataService]
 })
-export class AppComponent {
-  title = 'NightOut';
+export class AppComponent implements OnInit {
+  bars: Bar[] = [];
   
-  constructor(private apiService: ApiService) {}
+  constructor(private barDataService: BarDataService) {}
   
   onAddBar(bar) {
-    this.apiService.createBar(bar);
+    this.barDataService.addBar(bar);
   }
   
   onRemoveBar(bar) {
-    this.apiService.deleteBarById(bar.id);
+    this.barDataService.deleteBarById(bar.id);
   }
   
-  get bars() {
-    return this.apiService.getAllData();
+  get allBars() {
+    return this.barDataService.getAllBars();
   }
   
   public ngOnInit() {
-    this.apiService
-      .getAllData()
+    this.barDataService
+      .getAllBars()
       .subscribe(
         (bars) => {
           this.bars = bars;
+          console.log("bars:", this.bars);
         })
   }
   

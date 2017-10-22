@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Bar } from './bar';
 import { environment } from 'environments/environment';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -15,7 +16,7 @@ export class ApiService {
   constructor(private http: Http) {}
   
   // Get all '/'
-  public getAllData(): Observable<Bar[]> {
+  public getAllBars(): Observable<Bar[]> {
     return this.http
         .get(API_URL)
         .map(response => {
@@ -26,7 +27,7 @@ export class ApiService {
   }
 
   // API: POST '/'
-  public createBar(bar: Bar) {
+  public addBar(bar: Bar) {
     return this.http
         .post(API_URL, bar)
         .map(response => {
