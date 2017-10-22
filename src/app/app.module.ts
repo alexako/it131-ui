@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
+import { BarDataService } from './bar-data.service';
 import { ApiService } from './api.service';
 
 @NgModule({
@@ -9,9 +10,10 @@ import { ApiService } from './api.service';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule
   ],
-  providers: [ApiService],
+  providers: [BarDataService, ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
