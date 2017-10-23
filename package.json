@@ -1,10 +1,10 @@
 {
   "name": "it131l-ui",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 --disableHostCheck true",
+    "start": "ng serve --host 0.0.0.0 --env=prod --disableHostCheck true",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
