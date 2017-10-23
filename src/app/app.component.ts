@@ -38,4 +38,3 @@ export class AppComponent implements OnInit {
   
 }
 
-// https://www.sitepoint.com/angular-rxjs-create-api-service-rest-backend/
