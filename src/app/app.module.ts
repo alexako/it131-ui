@@ -4,7 +4,8 @@ import {HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { BarDataService } from './bar-data.service';
 import { ApiService } from './api.service';
-import { IpApiService } from './ip-api.service'
+import { IpApiService } from './ip-api.service';
+import { ZomatoApiService } from './zomato-api.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { IpApiService } from './ip-api.service'
     BrowserModule,
     HttpModule
   ],
-  providers: [BarDataService, ApiService, IpApiService],
+  providers: [BarDataService, ApiService, IpApiService, ZomatoApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
