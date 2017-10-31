@@ -1,13 +1,12 @@
 <div class="wrapper">
   <div id="logo"></div>
   <div id="controls-form">
-    <h3>
-      Style me
-      <span> and me</span>
-    </h3>
   </div>
+  <h3>Bars <small>in {{ coords.city }}:</small></h3> 
   <ul>
-     
+      <li *ngFor="let bar of bars">
+          {{ bar.name }}
+      </li>
   </ul>
 </div>
 

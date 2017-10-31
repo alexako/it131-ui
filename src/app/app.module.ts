@@ -4,6 +4,7 @@ import {HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { BarDataService } from './bar-data.service';
 import { ApiService } from './api.service';
+import { IpApiService } from './ip-api.service'
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { ApiService } from './api.service';
     BrowserModule,
     HttpModule
   ],
-  providers: [BarDataService, ApiService],
+  providers: [BarDataService, ApiService, IpApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

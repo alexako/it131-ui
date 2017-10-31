@@ -1,18 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { BarDataService } from './bar-data.service';
 import { Bar } from './bar';
+import { IpApiService } from './ip-api.service';
+import { Coords } from './coords';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [BarDataService]
+  providers: [BarDataService, IpApiService]
 })
 export class AppComponent implements OnInit {
   bars: Bar[] = [];
+  coords: Coords;
   
-  constructor(private barDataService: BarDataService) {}
+  constructor(private barDataService: BarDataService, private ipApiService: IpApiService) {}
   
   onAddBar(bar) {
     this.barDataService.addBar(bar);
@@ -25,15 +28,26 @@ export class AppComponent implements OnInit {
   get allBars() {
     return this.barDataService.getAllBars();
   }
+
+  get Coords() {
+    return this.ipApiService.getCoordinates();
+  }
   
   public ngOnInit() {
-    this.barDataService
-      .getAllBars()
-      .subscribe(
-        (bars) => {
-          this.bars = bars;
-          console.log("bars:", this.bars);
-        })
+      this.ipApiService
+        .getCoordinates()
+        .subscribe(
+            (coords) => {
+                this.coords = coords;
+                console.log("coords:", this.coords);
+            })
+      this.barDataService
+        .getAllBars()
+        .subscribe(
+            (bars) => {
+              this.bars = bars;
+              console.log("bars:", this.bars);
+            })
   }
   
 }
