@@ -1,13 +1,18 @@
 <div class="wrapper">
   <div id="logo"></div>
   <div id="controls-form">
-    <h3>
-      Style me
-      <span> and me</span>
-    </h3>
   </div>
-  <ul>
      
-  </ul>
+    <div class="container">
+      <h3>Bars <small>in {{ coords.city }}:</small></h3> 
+      <div class="bar" *ngFor="let bar of bars">
+          <h3>{{ bar.name }}</h3>
+          <ul>
+            <li *ngFor="let property of Object.keys(bar)">
+              {{ property }}: {{ bar.property }}
+            </li>
+          </ul>
+      </div>
+    </div>
 </div>
 
