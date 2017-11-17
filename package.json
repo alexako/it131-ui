@@ -1,6 +1,7 @@
 {
   "name": "it131l-ui",
-  "version": "0.1.8",
+  "version": "0.2.1",
+  "author": "Alexander Reyes <alexander.reyes@mymail.mapua.edu.ph> (http://alexjreyes.com/)",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
