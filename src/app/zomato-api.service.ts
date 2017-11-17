@@ -42,6 +42,22 @@ export class ZomatoApiService {
             .catch(this.handleError);
   }
 
+  public getBarsByKeyword(keyword: string): Observable<Bar> {
+      let headers = new Headers();
+      headers.set('Content-Type', 'application/json');
+      headers.set('user-key', 'bbf5811a30ba7c85e964fb7f0f499968');
+      let url = '$(API_ROOT)/params';
+      let params = new URLSearchParams();
+      params.set('q', keyword);
+      return this.http
+      .get(url, {headers: headers, params: params})
+             .map(response => {
+                 const bars = response.json();
+                 return bars.map((bar) => new Bar(bar))
+             })
+             .catch(this.handleError);
+  }
+
   private handleError (error: Response | any) {
       console.error('ApiService::handleError', error);
       return Observable.throw(error);

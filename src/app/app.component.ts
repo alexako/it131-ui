@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BarDataService } from './bar-data.service';
 import { Bar } from './bar';
 import { IpApiService } from './ip-api.service';
+import { ZomatoApiService } from './zomato-api.service';
 import { Coords } from './coords';
 
 
@@ -9,13 +10,20 @@ import { Coords } from './coords';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [BarDataService, IpApiService]
+  providers: [
+      BarDataService, 
+      IpApiService,
+      ZomatoApiService
+  ]
 })
 export class AppComponent implements OnInit {
+  title: string = "NightOut";
   bars: Bar[] = [];
   coords: Coords;
-  
-  constructor(private barDataService: BarDataService, private ipApiService: IpApiService) {}
+
+  constructor(private barDataService: BarDataService,
+              private ipApiService: IpApiService,
+              private zomatoApiService: ZomatoApiService) {}
   
   onAddBar(bar) {
     this.barDataService.addBar(bar);
@@ -23,6 +31,15 @@ export class AppComponent implements OnInit {
   
   onRemoveBar(bar) {
     this.barDataService.deleteBarById(bar.id);
+  }
+
+  getBarsByKeyword(keyword) {
+    console.log("in component:", keyword);
+    return this.zomatoApiService.getBarsByKeyword(keyword);
+  }
+
+  getBarById(id) {
+    return this.zomatoApiService.getBarById(id);
   }
   
   get allBars() {
@@ -32,7 +49,13 @@ export class AppComponent implements OnInit {
   get Coords() {
     return this.ipApiService.getCoordinates();
   }
-  
+
+  getStars(rating) {
+    var val = parseFloat(rating);
+    var size = val/5*100;
+    return size + '%';
+  }
+
   public ngOnInit() {
       this.ipApiService
         .getCoordinates()

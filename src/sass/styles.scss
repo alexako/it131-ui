@@ -1,0 +1,22 @@
+@import 'variables';
+
+body {
+  background-color: $background-color;
+  font-family: $base-font-stack;
+  font-size: $base-font-size;
+  color: $base-font-color;
+}
+
+h1,
+h2,
+h3 {
+  font-family: $header-font-stack;
+}
+
+h1 {
+  font-size: $header-font-size;
+}
+
+ul {
+  list-style: none;
+}
