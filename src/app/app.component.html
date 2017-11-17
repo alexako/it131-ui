@@ -1,18 +1,38 @@
 <div class="wrapper">
-  <div id="logo"></div>
-  <div id="controls-form">
-  </div>
-     
-    <div class="container">
-      <h3>Bars <small>in {{ coords.city }}:</small></h3> 
-      <div class="bar" *ngFor="let bar of bars">
-          <h3>{{ bar.name }}</h3>
-          <ul>
-            <li *ngFor="let property of Object.keys(bar)">
-              {{ property }}: {{ bar.property }}
-            </li>
-          </ul>
+  <header>
+    <h1>{{ title }}</h1>
+  </header>
+
+  <app-search-form></app-search-form>
+
+  <h2>Bars <small>in {{ coords.city }}:</small></h2> 
+  <ul>
+    <li *ngFor="let bar of bars">
+      <div class="bar">
+        <h2>{{ bar.name }}</h2>
+        <div class="bar-details">
+
+          <div class="bar-rating">
+            <h4>Rating</h4>
+            <!--<span class="stars alignright">-->
+              <span class="stars">
+              <span [ngStyle]="{ 'width': getStars(bar.rating) }"></span>
+            </span>
+          </div>
+
+          <div class="bar-description">
+            <h3>Description</h3>
+            <p *ngIf="bar.description">
+              {{ bar.description }}
+            </p>
+            <p *ngIf="!bar.description">
+              No description found.
+            </p>
+          </div>
+
+        </div>
       </div>
-    </div>
+    </li>
+  </ul>
 </div>
 

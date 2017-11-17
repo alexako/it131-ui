@@ -1,3 +1,10 @@
+@import '~sass/variables';
+@import '~sass/ratings';
+
+h2 {
+  font-family: $base-font-stack;
+}
+
 #controls-form {
     h3 {
         color: red;
