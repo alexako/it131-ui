@@ -9,7 +9,8 @@
     <img src="assets/loading.gif"/>
   </div>
   <div class="results" *ngIf="!showLoader">
-    <h2>Bars <small>in {{ coords.city }}: {{ zBars.results_found }} bars found</small></h2>
+    <h2>Bars in {{ coords.city }}
+      <small>{{ zBars.results_found }} bars found</small></h2>
     <ul>
       <li *ngFor="let bar of zBars.restaurants">
         <div class="bar">

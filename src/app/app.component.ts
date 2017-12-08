@@ -81,6 +81,11 @@ export class AppComponent implements OnInit {
             zip: 1230
       })
 
+      this.ipApiService.getCoordinates().subscribe(coords => {
+        this.coords = coords;
+        console.log("coords:", coords);
+      });
+
       this.zomatoApiService
         .getLocalBars(this.coords)
         .subscribe(zBars => {
@@ -89,13 +94,15 @@ export class AppComponent implements OnInit {
         })
 
 
-      //this.barDataService
-        //.getAllBars()
-        //.subscribe(
-            //(bars) => {
-              //this.bars = bars;
-              //console.log("bars:", this.bars);
-            //})
+      this.barDataService
+        .getAllBars()
+        .subscribe(
+            (bars) => {
+              bars.map(bar => {
+                this.bars.push(bar);
+              });
+              console.log("bars:", this.bars);
+            })
       this.showLoader = false;
   }
 
