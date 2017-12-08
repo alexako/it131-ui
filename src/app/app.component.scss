@@ -5,6 +5,11 @@ h2 {
   font-family: $base-font-stack;
 }
 
+.loader {
+  width: 100%;
+  text-align: center;
+}
+
 #controls-form {
     h3 {
         color: red;

@@ -12,6 +12,8 @@ const API_URL = "http://ip-api.com/json";
 @Injectable()
 export class IpApiService {
 
+  coords: Coords;
+
   constructor(private http: Http) { }
 
     public getCoordinates(): Observable<Coords> {
@@ -26,5 +28,14 @@ export class IpApiService {
     private handleError (error: Response | any) {
         console.error('IpApiService::handleError', error);
         return Observable.throw(error);
+    }
+
+    public ngOnInit() {
+        this.http
+            .get(API_URL)
+            .map(response => {
+                this.coords = new Coords(response.json());
+            })
+            .catch(this.handleError);
     }
 }
