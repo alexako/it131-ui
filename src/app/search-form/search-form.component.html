@@ -2,7 +2,7 @@
   <form class="form">
     <fieldset class="form-fieldset ui-input __first">
       <input type="text" name="search"
-             [(ngModel)]="search">
+             [(ngModel)]="search.keyword">
       <label for="query">
         <span data-text="Saan mo trip pumunta?">
           Saan mo trip pumunta?
@@ -11,7 +11,7 @@
     </fieldset>
     <div class="form-footer">
       <button type="button" class="btn"
-              ngClick="getBarsByKeyword(keyword)">
+             (click)="getBarsByKeyword(search.keyword)">
         Search
       </button>
     </div>

@@ -3,36 +3,45 @@
     <h1>{{ title }}</h1>
   </header>
 
-  <app-search-form></app-search-form>
+  <app-search-form (updateEvent)="receiveUpdate($event)"></app-search-form>
 
-  <h2>Bars <small>in {{ coords.city }}:</small></h2> 
-  <ul>
-    <li *ngFor="let bar of bars">
-      <div class="bar">
-        <h2>{{ bar.name }}</h2>
-        <div class="bar-details">
+  <div class="loader" *ngIf="showLoader">
+    <img src="assets/loading.gif"/>
+  </div>
+  <div class="results" *ngIf="!showLoader">
+    <h2>Bars in {{ coords.city }}
+      <small>{{ zBars.results_found }} bars found</small></h2>
+    <ul>
+      <li *ngFor="let bar of zBars.restaurants">
+        <div class="bar">
+          <h2>
+            {{ bar.restaurant.name }}
+            <small>
+              {{ bar.restaurant.location.locality_verbose }}
+            </small>
+          </h2>
+          <div class="bar-details">
 
-          <div class="bar-rating">
-            <h4>Rating</h4>
-            <!--<span class="stars alignright">-->
-              <span class="stars">
-              <span [ngStyle]="{ 'width': getStars(bar.rating) }"></span>
-            </span>
+            <div class="bar-description">
+              <img class="feature-image" src="{{ bar.restaurant.featured_image }}"/>
+              <div class="bar-rating">
+                <h4>Rating</h4>
+                  <span class="stars">
+                  <span [ngStyle]="{ 'width': getStars(bar.restaurant.user_rating.aggregate_rating) }"></span>
+                </span>
+              </div>
+              <h3>Description</h3>
+              <p>
+              Price range: {{ bar.restaurant.price_range }}<br>
+                Average cost for two: {{ bar.restaurant.average_cost_for_two }}
+              </p>
+            </div>
+
+
           </div>
-
-          <div class="bar-description">
-            <h3>Description</h3>
-            <p *ngIf="bar.description">
-              {{ bar.description }}
-            </p>
-            <p *ngIf="!bar.description">
-              No description found.
-            </p>
-          </div>
-
         </div>
-      </div>
-    </li>
-  </ul>
+      </li>
+    </ul>
+  </div>
 </div>
 

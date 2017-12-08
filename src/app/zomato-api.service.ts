@@ -19,7 +19,7 @@ export class ZomatoApiService {
       let headers = new Headers();
       headers.set('Content-Type', 'application/json');
       headers.set('user-key', 'bbf5811a30ba7c85e964fb7f0f499968');
-      let url = '$(API_ROOT)/params';
+      let url = API_ROOT + 'search';
       let params = new URLSearchParams();
       params.set('lat', coords.lat.toString());
       params.set('lon', coords.lon.toString());
@@ -28,7 +28,8 @@ export class ZomatoApiService {
             .get(url, {headers: headers, params: params})
             .map(response => {
                 const bars = response.json();
-                return bars.map((bar) => new Bar(bar))
+                //return bars.map((bar) => new Bar(bar))
+                return bars;
             })
             .catch(this.handleError);
   }
@@ -43,17 +44,21 @@ export class ZomatoApiService {
   }
 
   public getBarsByKeyword(keyword: string): Observable<Bar> {
+      console.log("keyword arg:", keyword);
       let headers = new Headers();
       headers.set('Content-Type', 'application/json');
       headers.set('user-key', 'bbf5811a30ba7c85e964fb7f0f499968');
-      let url = '$(API_ROOT)/params';
+      let url = API_ROOT + 'search';
       let params = new URLSearchParams();
       params.set('q', keyword);
+      params.set('lat', '15.1667');
+      params.set('lon', '120.6500');
+      params.set('category', '3');
       return this.http
       .get(url, {headers: headers, params: params})
              .map(response => {
                  const bars = response.json();
-                 return bars.map((bar) => new Bar(bar))
+                 return bars
              })
              .catch(this.handleError);
   }

@@ -3,6 +3,27 @@
 
 h2 {
   font-family: $base-font-stack;
+  small {
+    font-size: 0.8em;
+    color: #696969;
+  }
+}
+
+.loader {
+  width: 100%;
+  text-align: center;
+}
+
+.bar {
+  margin-bottom: 3em;
+}
+
+.feature-image {
+  width: 100%;
+}
+
+input {
+  color: white;
 }
 
 #controls-form {
